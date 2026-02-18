@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
-    :root {
+    :root {{
       --bg: #0d0f14;
       --card: #161b27;
       --border: rgba(255,255,255,0.07);
@@ -19,11 +19,11 @@
       --text: #e8eaf0;
       --muted: #7a8099;
       --radius: 14px;
-    }
+    }}
 
-    html { scroll-behavior: smooth; }
+    html {{ scroll-behavior: smooth; }}
 
-    body {
+    body {{
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -33,29 +33,29 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
-    }
+    }}
 
     /* Ambient background blobs */
-    body::before, body::after {
+    body::before, body::after {{
       content: '';
       position: fixed;
       border-radius: 50%;
       filter: blur(120px);
       z-index: 0;
       pointer-events: none;
-    }
-    body::before {
+    }}
+    body::before {{
       width: 500px; height: 500px;
       background: rgba(108, 142, 245, 0.12);
       top: -150px; left: -150px;
-    }
-    body::after {
+    }}
+    body::after {{
       width: 400px; height: 400px;
       background: rgba(194, 125, 58, 0.10);
       bottom: -100px; right: -100px;
-    }
+    }}
 
-    .container {
+    .container {{
       position: relative;
       z-index: 1;
       width: 100%;
@@ -64,53 +64,60 @@
       flex-direction: column;
       align-items: center;
       gap: 1.75rem;
-    }
+    }}
 
     /* Avatar + name */
-    .profile {
+    .profile {{
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1rem;
       text-align: center;
-    }
+    }}
 
-    .avatar {
+    .avatar {{
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      object-fit: cover;
+      object-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -1px;
       box-shadow: 0 0 0 3px rgba(108,142,245,0.25);
-    }
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      overflow: hidden;
+    }}
 
-    .profile h1 {
+    .avatar img {{
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+      display: block;
+    }}
+
+    .profile h1 {{
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: -0.5px;
-    }
+    }}
 
-    .profile p {
+    .profile p {{
       font-size: 0.92rem;
       color: var(--muted);
       line-height: 1.5;
       max-width: 320px;
-    }
+    }}
 
-    .badges {
+    .badges {{
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
       justify-content: center;
-    }
+    }}
 
-    .badge {
+    .badge {{
       background: rgba(108,142,245,0.12);
       border: 1px solid rgba(108,142,245,0.25);
       color: var(--accent);
@@ -119,17 +126,17 @@
       padding: 0.25rem 0.65rem;
       border-radius: 20px;
       letter-spacing: 0.3px;
-    }
+    }}
 
     /* Link cards */
-    .links {
+    .links {{
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-    }
+    }}
 
-    .link-card {
+    .link-card {{
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -143,15 +150,15 @@
       font-weight: 500;
       transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       cursor: pointer;
-    }
+    }}
 
-    .link-card:hover {
+    .link-card:hover {{
       transform: translateY(-2px);
       border-color: rgba(108,142,245,0.4);
       background: rgba(108,142,245,0.07);
-    }
+    }}
 
-    .link-card .icon {
+    .link-card .icon {{
       width: 40px;
       height: 40px;
       border-radius: 10px;
@@ -160,59 +167,40 @@
       justify-content: center;
       font-size: 1.2rem;
       flex-shrink: 0;
-    }
+    }}
 
-    .link-card .label { flex: 1; }
-    .link-card .label span {
+    .link-card .label {{ flex: 1; }}
+    .link-card .label span {{
       display: block;
       font-size: 0.72rem;
       color: var(--muted);
       font-weight: 400;
       margin-top: 1px;
-    }
+    }}
 
-    .link-card .arrow {
+    .link-card .arrow {{
       color: var(--muted);
       font-size: 0.9rem;
       transition: color 0.18s, transform 0.18s;
-    }
-    .link-card:hover .arrow {
+    }}
+    .link-card:hover .arrow {{
       color: var(--accent);
       transform: translateX(3px);
-    }
+    }}
 
     /* Icon backgrounds per service */
-    .icon-linkedin  { background: rgba(10,102,194,0.18); }
-    .icon-email     { background: rgba(234,67,53,0.15); }
-    .icon-web       { background: rgba(108,142,245,0.14); }
-    .icon-mastodon  { background: rgba(255,255,255,0.08); }
-
-    /* Divider */
-    .divider {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    .icon-linkedin  {{ background: rgba(10,102,194,0.18); }}
+    .icon-mastodon  {{ background: rgba(102, 126, 234, 0.18); }}
 
     /* Footer */
-    footer {
+    footer {{
       font-size: 0.72rem;
       color: var(--muted);
       text-align: center;
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
+      margin-top: 1rem;
+    }}
+    footer a {{ color: var(--muted); text-decoration: none; }}
+    footer a:hover {{ color: var(--text); }}
   </style>
 </head>
 <body>
@@ -220,20 +208,21 @@
 
     <!-- Profile -->
     <div class="profile">
-      <img class="avatar" src="profile.jpeg" alt="Tomás Pita da Silva" />
-    </div>
+      <div class="avatar">
+        <img src="profile.jpeg" alt="Tomás Pita da Silva" />
+      </div>
       <div>
         <h1>Tomás Pita da Silva</h1>
-        <p>Senior Manager at GSK &middot; Poznań, Poland<br/>Heavy coffee drinker &middot; Father to a 4 year old</p>
+        <p>Senior Manager at GSK · Poznań, Poland<br/>Coffee enthusiast · Amateur radio operator</p>
       </div>
       <div class="badges">
         <span class="badge">☕ Specialty Coffee</span>
-        <span class="badge">🪵 Bushcraft</span>
-        <span class="badge">🕹️ Gaming</span>
+        <span class="badge">📻 Amateur Radio</span>
+        <span class="badge">💊 Pharma</span>
       </div>
     </div>
 
-    <!-- Primary links -->
+    <!-- Links (only LinkedIn + Mastodon) -->
     <div class="links">
 
       <a class="link-card" href="https://www.linkedin.com/in/tomaspitadasilva" target="_blank" rel="noopener">
@@ -248,15 +237,16 @@
         <div class="icon icon-mastodon">
           <svg width="20" height="20" viewBox="0 0 16 16" fill="#e8eaf0">
             <path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a4 4 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522q0-1.288.66-2.046c.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764q.662.757.661 2.046z"/>
+          </svg>
         </div>
-        <div class="label">Mastodon<span>@silvetti</span></div>
+        <div class="label">Mastodon<span>@silvetti@mastodon.social</span></div>
         <div class="arrow">→</div>
       </a>
 
     </div>
 
     <footer>
-      &copy; 2026 Tomás Pita da Silva &middot; <a href="https://tomas.pitadasilva.com">tomas.pitadasilva.com</a>
+      © 2026 Tomás Pita da Silva
     </footer>
 
   </div>
